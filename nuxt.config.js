@@ -1,11 +1,19 @@
 const pkg = require('./package')
 
+// `DEPLOY_ENV` が `GH_PAGES` の場合のみ `router.base = '/<repository-name>/'` を追加する
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+  router: {
+    base: '/<repository-name>/'
+  }
+} : {}
+
 module.exports = {
   mode: 'universal',
+  router: {
+    ...routerBase
+  },
 
-  /*
-  ** Headers of the page
-  */
+  /* Headers of the page */
   head: {
     title: pkg.name,
     meta: [
@@ -19,46 +27,32 @@ module.exports = {
     ]
   },
 
-  /*
-  ** Customize the progress-bar color
-  */
+  /* Customize the progress-bar color */
   loading: { color: '#fff' },
 
-  /*
-  ** Global CSS
-  */
+  /* Global CSS */
   css: [
     '~/assets/style/app.styl'
   ],
 
-  /*
-  ** Plugins to load before mounting the App
-  */
+  /* Plugins to load before mounting the App */
   plugins: [
     '@/plugins/vuetify'
   ],
 
-  /*
-  ** Nuxt.js modules
-  */
+  /* Nuxt.js modules */
   modules: [
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios'
   ],
-  /*
-  ** Axios module configuration
-  */
+  /* Axios module configuration */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
   },
 
-  /*
-  ** Build configuration
-  */
+  /* Build configuration */
   build: {
-    /*
-    ** You can extend webpack config here
-    */
+    /* You can extend webpack config here */
     extend(config, ctx) {
       // Run ESLint on save
       if (ctx.isDev && ctx.isClient) {

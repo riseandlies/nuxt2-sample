@@ -94,7 +94,9 @@ export default {
       fixed: false,
       items: [
         { icon: 'apps', title: 'Welcome', to: '/' },
-        { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' }
+        { icon: 'bubble_chart', title: 'Inspire', to: '/inspire' },
+        { icon: 'bubble_chart', title: 'Qiita', to: '/qiita' },
+        { icon: 'bubble_chart', title: 'Trello', to: '/trello' }
       ],
       miniVariant: false,
       right: true,
